@@ -11,9 +11,8 @@ app.use(express.static("public"));
 app.use(expressLayout);
 app.set("layout", "/layouts/main");
 app.set("view engine", "ejs");
-app.get("/", (req, res) => {
-  res.send("welcome");
-});
+
+app.use("/", require("./server/routes/main"));
 app.listen(port, () => {
   console.log(`express app is run in ${port}`);
 });
