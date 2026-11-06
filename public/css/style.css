@@ -243,3 +243,68 @@ img{
   margin: 4rem;
   text-align: center;
 }
+
+/* Search bar*/
+
+.search-bar{
+  background-color: var(--black);
+  left: 0;
+  right: 0;
+  padding: 4px 0;
+  position: absolute;
+  visibility: hidden;
+  transform: translateY(-100px);
+}
+
+
+.search-bar.open{
+  transform: translateY(0);
+  transition: transform(00.1s);
+}
+
+
+.search-bar input{
+  margin: 0;
+  padding: 0;
+}
+#searchClose{
+  right: 0;
+ top: 0;
+  color: var(--gray-light);
+  position: absolute;
+  padding: 15px;
+}
+
+/*admin dashboard*/
+
+.admin-title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-posts{
+  padding: 0;
+  margin: 0;
+}
+
+.admin-posts-controls form{
+  display: inline-block;
+}
+
+.admin-posts-controls .btn{
+  background-color: var(--black);
+  color: var(--gray-light);
+  display: inline-block;
+  padding: 4px 8px ;
+  line-height: 2;
+  text-decoration: none;
+  border: 0;
+  font-size: 0.8px;
+}
+
+.admin-posts li{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
