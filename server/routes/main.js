@@ -3,11 +3,11 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  const layout = {
+  const locals = {
     title: "nodejs blog",
     description: " Build a Blog with Node.js, Express & MongoDB ",
   };
-  res.render("index", { layout });
+  res.render("index", { locals });
 });
 
 router.get("/about", (req, res) => {
