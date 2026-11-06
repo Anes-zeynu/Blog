@@ -1,3 +1,59 @@
+:root{
+  --black : #1c1c1c;
+  --gray:#7E7E7E;
+  --gray-light:#E7E7E7;
+  --red:b30000;
+  --font-size-base:1rem;
+  --border-radius: 10px;
+}
+
 body{
-  background-color: aqua;
+  color: var(--black);
+  font-size: var(--font-size-base);
+  background-color: #FAF5EE;
+  margin: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select,
+textarea{
+  font-size: var(--font-size-base);
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  margin-bottom: 10px;
+}
+
+.btn{
+  background-color: var(--black);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  margin: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+-btn-delete{
+  padding: 10px 16px;
+  background-color: var(--red);
+}
+
+img{
+  width: 100%;
+  height: auto;
+  margin-left: 10px;
+}
+
+/* layout */
+
+.container{
+  max-width: 982px;
+  margin: 0 auto;
+  padding: 0 10px;
+  
 }
