@@ -2,6 +2,11 @@ const express = require("express");
 
 const router = express.Router();
 
+const Post = require("../model/post");
+/**
+ * GET
+ *HOME
+ */
 router.get("/", (req, res) => {
   const locals = {
     title: "nodejs blog",
