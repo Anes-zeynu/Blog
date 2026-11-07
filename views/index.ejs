@@ -14,7 +14,7 @@
     <% data.forEach(element => { %>
     <ul class="article-ul">
       <li>
-        <a href="#">
+        <a href="/post/<%= element._id %>">
           <span><%= element.title %></span>
           <span class="article-list-days"><%= element.createdDate.toDateString() %></span>
         </a>
