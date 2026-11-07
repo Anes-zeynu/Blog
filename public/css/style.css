@@ -226,6 +226,10 @@ img{
   transition: filter 0.1s;
 }
 
+.article-ul li a:hover{
+  color: var(--gray);
+  transition: 0.4s;
+}
 .pagination{
   display: inline-block;
   color: var(--gray);

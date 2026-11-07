@@ -11,15 +11,15 @@
   <section class="articles">
     <h2 class="article_heading">Latest Posts</h2>
 
-
+    <% data.forEach(element => { %>
     <ul class="article-ul">
       <li>
         <a href="#">
-          <span>Post Title</span>
-          <span class="article-list-days">Date</span>
+          <span><%= element.title %></span>
+          <span class="article-list-days"><%= element.createdDate.toDateString() %></span>
         </a>
       </li>
     </ul>
-
+<% }) %>
     <a href="#" class="pagination">&lt; View Older Posts</a>
   </section>
