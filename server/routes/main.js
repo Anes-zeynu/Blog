@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
     };
 
     let perpage = 10;
+    let page = req.query.page || 1;
     res.render("index", { locals, data });
   } catch (error) {
     console.log(error);
