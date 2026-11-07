@@ -8,19 +8,32 @@ const Post = require("../model/post");
  *HOME
  */
 router.get("/", async (req, res) => {
-  const locals = {
-    title: "nodejs blog",
-    description: " Build a Blog with Node.js, Express & MongoDB ",
-  };
-
   try {
-    const data = await Post.find();
+    const locals = {
+      title: "nodejs blog",
+      description: " Build a Blog with Node.js, Express & MongoDB ",
+    };
+
+    let perpage = 10;
     res.render("index", { locals, data });
   } catch (error) {
     console.log(error);
   }
 });
 
+// router.get("/", async (req, res) => {
+//   const locals = {
+//     title: "nodejs blog",
+//     description: " Build a Blog with Node.js, Express & MongoDB ",
+//   };
+
+//   try {
+//     const data = await Post.find();
+//     res.render("index", { locals, data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 router.get("/about", (req, res) => {
   res.render("about");
 });
