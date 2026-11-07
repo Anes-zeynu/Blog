@@ -15,6 +15,16 @@ router.get("/", (req, res) => {
   res.render("index", { locals });
 });
 
+const insertPostData = () => {
+  Post.insertMany([
+    {
+      title: "Building a Blog",
+      body: " This is body text",
+    },
+  ]);
+};
+
+insertPostData();
 router.get("/about", (req, res) => {
   res.render("about");
 });
