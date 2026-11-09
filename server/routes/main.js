@@ -59,12 +59,12 @@ router.get("/", async (req, res) => {
  */
 
 router.get("/post/:id", async (req, res) => {
-  const locals = {
-    title: "nodejs blog",
-    description: " Build a Blog with Node.js, Express & MongoDB ",
-  };
-
   try {
+    const locals = {
+      title: "nodejs blog",
+      description: " Build a Blog with Node.js, Express & MongoDB ",
+    };
+
     const data = await Post.find();
     res.render("index", { locals, data });
   } catch (error) {
