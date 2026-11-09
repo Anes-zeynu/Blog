@@ -14,21 +14,23 @@ router.get("/", async (req, res) => {
       description: " Build a Blog with Node.js, Express & MongoDB ",
     };
 
-    let perpage = 10;
-    let page = req.query.page || 1;
+    let perpage = 5;
+    let page = parseInt(req.query.page) || 1;
 
-    const blogPost = Post.aggregate([{ $sort: { createdDate: -1 } }])
+    const data = await Post.aggregate([{ $sort: { createdDate: -1 } }])
       .skip(perpage * page - perpage)
       .limit(perpage)
       .exec();
 
-    const count = Post.count();
-    const nextPage = parseInt(page) + 1;
+    const count = await Post.countDocuments();
+
+    const nextPage = page + 1;
+
     const hasNextPage = nextPage <= Math.ceil(count / perpage);
 
     res.render("index", {
       locals,
-      blogPost,
+      data,
       current: page,
       nextPage: hasNextPage ? nextPage : null,
     });
@@ -37,7 +39,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/", async (req, res) => {
+// router.get("/post/:id", async (req, res) => {
 //   const locals = {
 //     title: "nodejs blog",
 //     description: " Build a Blog with Node.js, Express & MongoDB ",
@@ -50,6 +52,26 @@ router.get("/", async (req, res) => {
 //     console.log(error);
 //   }
 // });
+
+/**
+ * GET
+ * Post : id
+ */
+
+// router.get("/post/:id", async (req, res) => {
+//   const locals = {
+//     title: "nodejs blog",
+//     description: " Build a Blog with Node.js, Express & MongoDB ",
+//   };
+
+//   try {
+//     const data = await Post.find();
+//     res.render("index", { locals, data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
 router.get("/about", (req, res) => {
   res.render("about");
 });
