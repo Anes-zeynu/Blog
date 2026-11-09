@@ -16,7 +16,22 @@ router.get("/", async (req, res) => {
 
     let perpage = 10;
     let page = req.query.page || 1;
-    res.render("index", { locals, data });
+
+    const blogPost = Post.aggregate([{ $sort: { createdDate: -1 } }])
+      .skip(perpage * page - perpage)
+      .limit(perpage)
+      .exec();
+
+    const count = Post.count();
+    const nextPage = parseInt(page) + 1;
+    const hasNextPage = nextPage <= Math.ceil(count / perpage);
+
+    res.render("index", {
+      locals,
+      blogPost,
+      current: page,
+      nextPage: hasNextPage ? nextPage : null,
+    });
   } catch (error) {
     console.log(error);
   }
