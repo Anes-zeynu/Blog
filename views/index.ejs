@@ -21,5 +21,10 @@
       </li>
     </ul>
 <% }) %>
-    <a href="#" class="pagination">&lt; View Older Posts</a>
+
+
+<% if (nextPage !== null) { %>
+ <a href="<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+<% } %>
+    
   </section>
