@@ -58,19 +58,19 @@ router.get("/", async (req, res) => {
  * Post : id
  */
 
-// router.get("/post/:id", async (req, res) => {
-//   const locals = {
-//     title: "nodejs blog",
-//     description: " Build a Blog with Node.js, Express & MongoDB ",
-//   };
+router.get("/post/:id", async (req, res) => {
+  const locals = {
+    title: "nodejs blog",
+    description: " Build a Blog with Node.js, Express & MongoDB ",
+  };
 
-//   try {
-//     const data = await Post.find();
-//     res.render("index", { locals, data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+  try {
+    const data = await Post.find();
+    res.render("index", { locals, data });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 router.get("/about", (req, res) => {
   res.render("about");
