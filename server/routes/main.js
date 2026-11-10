@@ -72,6 +72,25 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
+/**
+ * Post
+ * Post : id
+ */
+
+router.post("/search", async (req, res) => {
+  try {
+    const locals = {
+      title: "search",
+      description: " Build a Blog with Node.js, Express & MongoDB ",
+    };
+
+    const data = await Post.find();
+    res.render("search", { locals, data });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/about", (req, res) => {
   res.render("about");
 });
