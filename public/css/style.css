@@ -135,7 +135,7 @@ img{
   color: black;
   cursor: pointer;
 }
-
+ 
 .header-button button:hover{
   border: 2px solid transparent;
 }
@@ -261,22 +261,40 @@ img{
 }
 
 
-.search-bar.open{
-  transform: translateY(0);
-  transition: transform(00.1s);
-}
+/* Search bar */
 
-
-.search-bar input{
-  margin: 0;
-  padding: 0;
-}
-#searchClose{
+.search-bar {
+  background-color: var(--black);
+  left: 0;
   right: 0;
- top: 0;
+  top: 0;
+  padding: 20px 0;
+  position: absolute;
+  z-index: 1000;
+
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease, visibility 0.3s ease;
+}
+
+.search-bar.open {
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.search-bar input {
+  margin: 0;
+  padding: 12px;
+  width: 100%;
+}
+
+#searchClose {
+  right: 0;
+  top: 0;
   color: var(--gray-light);
   position: absolute;
   padding: 15px;
+  cursor: pointer;
 }
 
 /*admin dashboard*/
