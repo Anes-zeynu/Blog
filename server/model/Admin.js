@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+const bcryptjs = require("bcryptjs");
 const adminSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -8,10 +9,15 @@ const adminSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
+    lowercase: true,
     required: true,
+    trim: true,
   },
   password: {
     type: String,
     required: true,
   },
 });
+
+module.exports = mongoose.model("Admin", adminSchema);
