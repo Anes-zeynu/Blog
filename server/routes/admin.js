@@ -4,6 +4,7 @@ const Admin = require("../model/Admin");
 const Post = require("../model/post");
 
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const adminLayout = "../views/layouts/admin";
 
 /**

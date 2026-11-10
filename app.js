@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-
+const cookieParser = require("cookie-parser");
 const connectDB = require("./server/config/db.js");
 
 const app = express();
@@ -19,6 +19,7 @@ app.use(expressLayouts);
 app.set("layout", "layouts/main");
 app.set("view engine", "ejs");
 
+app.use(cookieParser());
 // Routes
 app.use("/", require("./server/routes/main.js"));
 app.use("/", require("./server/routes/admin.js"));
