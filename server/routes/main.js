@@ -93,7 +93,11 @@ router.post("/search", async (req, res) => {
         { body: { $regex: RegExp(searchNoSpecialChar, "i") } },
       ],
     });
-    // res.render("search", { locals, data });
+
+    res.render("search", {
+      locals,
+      data,
+    });
   } catch (error) {
     console.log(error);
   }
