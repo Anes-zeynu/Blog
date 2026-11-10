@@ -33,12 +33,6 @@ router.get("/admin/register", async (req, res) => {
 router.post("/admin/register", async (req, res) => {
   try {
     const { username, password, email, setupKey } = req.body;
-    console.log("BODY:", req.body);
-
-    console.log("Username:", username);
-    console.log("Email:", email);
-    console.log("Password exists:", !!password);
-    console.log("Setup key exists:", !!setupKey);
     if (!username || !password || !email || !setupKey) {
       return res.status(400).send("all fields required");
     }
