@@ -137,7 +137,5 @@ router.post("/admin/login", async (req, res) => {
     console.log(error);
     return res.status(500).send("failed to logged in");
   }
-
-  bcryptjs.compare(password, admin.password);
 });
 module.exports = router;

@@ -28,14 +28,12 @@ app.use("/", require("./server/routes/admin.js"));
 const startServer = async () => {
   try {
     await connectDB();
-
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
     });
   } catch (error) {
-    console.error("Failed to start server:", error.message);
+    console.error("failed to connect server", error.message);
     process.exit(1);
   }
 };
-
 startServer();
