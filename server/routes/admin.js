@@ -22,14 +22,9 @@ router.get("/admin/register", async (req, res) => {
       locals,
       adminLayout,
     });
-
-    res.render("admin/login", {
-      locals,
-      adminLayout,
-    });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       message: "server error",
     });
   }
@@ -71,4 +66,28 @@ router.post("/admin/register", async (req, res) => {
     });
   }
 });
+
+/**
+ * GET
+ * Admin Login Page
+ */
+
+router.get("/admin/login", async (req, res) => {
+  try {
+    const locals = {
+      title: "Admin Login page",
+      description: "Admin login to page",
+    };
+    res.render("admin/login", {
+      locals,
+      adminLayout,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "server error",
+    });
+  }
+});
+
 module.exports = router;
