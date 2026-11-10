@@ -1,0 +1,20 @@
+<div class="author">
+  <h1 class="author_headindg">
+    Search Results
+  </h1>
+
+</div>
+
+<section class="articles">
+   <% data.forEach(element => { %>
+    <ul class="article-ul">
+      <li>
+        <a href="/post/<%= element._id %>">
+          <span><%= element.title %></span>
+          <span class="article-list-days"><%= element.createdDate.toDateString() %></span>
+        </a>
+      </li>
+      <% }) %>
+    </ul>
+
+</section>
