@@ -22,6 +22,11 @@ router.get("/admin/register", async (req, res) => {
       locals,
       adminLayout,
     });
+
+    res.render("admin/login", {
+      locals,
+      adminLayout,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -38,7 +43,7 @@ router.post("/admin/register", async (req, res) => {
     }
 
     if (setupKey !== process.env.ADMIN_SETUP_KEY) {
-      res.status(403).json({
+      return res.status(403).json({
         message: "Its forbidden the setupkey you entered is not match",
       });
     }
@@ -46,7 +51,7 @@ router.post("/admin/register", async (req, res) => {
     const existingAdmin = await Admin.countDocuments();
 
     if (existingAdmin > 0) {
-      res.status(403).send("the admin already registered ");
+      return res.status(403).send("the admin already registered ");
     }
 
     const hashedPassword = await bcryptjs.hash(password, 12);
@@ -58,10 +63,10 @@ router.post("/admin/register", async (req, res) => {
     });
   } catch (error) {
     if (error.code === 11000) {
-      res.status(400).send("Email already existed");
+      return res.status(400).send("Email already existed");
     }
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       message: " Error in registering an admin",
     });
   }
