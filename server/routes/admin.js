@@ -32,14 +32,18 @@ router.get("/admin/register", async (req, res) => {
 
 router.post("/admin/register", async (req, res) => {
   try {
-    const { username, password, email, setUpKey } = req.body;
-    if (!username || !password || !email || !setUpKey) {
-      return res.status(400).json({
-        message: "All fields are required",
-      });
+    const { username, password, email, setupKey } = req.body;
+    console.log("BODY:", req.body);
+
+    console.log("Username:", username);
+    console.log("Email:", email);
+    console.log("Password exists:", !!password);
+    console.log("Setup key exists:", !!setupKey);
+    if (!username || !password || !email || !setupKey) {
+      return res.status(400).send("all fields required");
     }
 
-    if (setUpKey !== process.env.ADMIN_SETUP_KEY) {
+    if (setupKey !== process.env.ADMIN_SETUP_KEY) {
       res.status(403).json({
         message: "Its forbidden the setupkey you entered is not match",
       });
@@ -50,7 +54,18 @@ router.post("/admin/register", async (req, res) => {
     if (existingAdmin > 0) {
       res.status(403).send("the admin already registered ");
     }
+
+    const hashedPassword = await bcryptjs.hash(password, 12);
+
+    await Admin.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
   } catch (error) {
+    if (error.code === 11000) {
+      res.status(400).send("Email already existed");
+    }
     console.log(error);
     res.status(500).json({
       message: " Error in registering an admin",
