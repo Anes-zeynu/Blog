@@ -1,26 +1,32 @@
 const express = require("express");
 const router = express.Router();
+const Admin = require("../model/Admin");
 const Post = require("../model/post");
 
+const bcryptjs = require("bcryptjs");
 const adminLayout = "../views/layouts/admin";
+
 /**
  * Get
- * Admi Login Page
+ * Admin Registration Page
  */
-router.get("/admin", async (req, res) => {
+
+router.get("/admin/register", async (req, res) => {
   try {
     const locals = {
-      title: "Admin",
-      description: " Build a Blog with Node.js, Express & MongoDB ",
+      title: "Admin Registration Page",
+      description: "Register Blog Administrator",
     };
 
-    res.render("admin/index", {
+    res.render("admin/register", {
       locals,
-      layout: adminLayout,
+      adminLayout,
     });
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      message: "server error",
+    });
   }
 });
-
 module.exports = router;
