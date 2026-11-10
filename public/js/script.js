@@ -12,4 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
       searchInput.focus()
     });
   }
+
+  searchClose.addEventListener('click',()=>{
+    searchBar.style.visibility = 'hidden'
+    searchBar.classList.remove('open')
+    this.setAttribute('area-expanded' = 'false')
+  })
 });
