@@ -29,4 +29,26 @@ router.get("/admin/register", async (req, res) => {
     });
   }
 });
+
+router.post("/admin/register", async (req, res) => {
+  try {
+    const { username, password, email, setUpKey } = req.body;
+    if (!username || !password || !email || !setUpKey) {
+      res.status(400).json({
+        message: "All fields are required",
+      });
+
+      if (setUpKey !== process.env.ADMIN_SETUP_KEY) {
+        res.status(403).json({
+          message: "Its forbidden the stupkey is not match",
+        });
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: " Error in registering an admin",
+    });
+  }
+});
 module.exports = router;
