@@ -121,6 +121,17 @@ router.post("/admin/login", async (req, res) => {
     }
 
     const isPasswordValid = await bcryptjs.compare(password, admin.password);
+
+    if (!isPasswordValid) {
+      res.status(401).render("admin/login", {
+        error: "invalid email or password",
+        layout: adminLayout,
+        locals: {
+          title: "Admin Login",
+          description: "Login to Blog Admin Dashboard",
+        },
+      });
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).send("failed to logged in");
