@@ -90,4 +90,5 @@ router.get("/admin/login", async (req, res) => {
   }
 });
 
+router.post("/admin/login", async (req, res) => {});
 module.exports = router;
