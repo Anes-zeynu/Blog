@@ -76,7 +76,7 @@ router.get("/admin/login", async (req, res) => {
   try {
     const locals = {
       title: "Admin Login page",
-      description: "Admin login to page",
+      description: "Login to Blog Admin Dashboard",
     };
     res.render("admin/login", {
       locals,
@@ -90,5 +90,12 @@ router.get("/admin/login", async (req, res) => {
   }
 });
 
-router.post("/admin/login", async (req, res) => {});
+router.post("/admin/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("failed to logged in");
+  }
+});
 module.exports = router;
