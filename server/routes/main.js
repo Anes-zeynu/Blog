@@ -87,7 +87,12 @@ router.post("/search", async (req, res) => {
     let searchTerm = req.params.searchTerm;
 
     const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "");
-    // const data = await Post.find();
+    const data = await Post.find({
+      $or: [
+        { title: { $regex: RegExp(searchNoSpecialChar, "i") } },
+        { body: { $regex: RegExp(searchNoSpecialChar, "i") } },
+      ],
+    });
     // res.render("search", { locals, data });
   } catch (error) {
     console.log(error);
