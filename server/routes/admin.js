@@ -108,6 +108,17 @@ router.post("/admin/login", async (req, res) => {
     const admin = await Admin.findOne({
       email: email.trim().toLowerCase(),
     });
+
+    if (!admin) {
+      return res.status(401).render("admin/login", {
+        error: "Invalid email or password",
+        layout: adminLayout,
+        locals: {
+          title: "Admin Login",
+          description: "Login to Blog Admin Dashboard",
+        },
+      });
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).send("failed to logged in");
