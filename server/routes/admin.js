@@ -4,7 +4,7 @@ const Post = require("../model/post");
 
 /**
  * Get
- * Home
+ * Admi Login Page
  */
 router.get("/admin", async (req, res) => {
   try {
@@ -13,7 +13,7 @@ router.get("/admin", async (req, res) => {
       description: " Build a Blog with Node.js, Express & MongoDB ",
     };
 
-    res.render("admin/index", { locals, data });
+    res.render("admin/index", { locals });
   } catch (error) {
     console.log(error);
   }
