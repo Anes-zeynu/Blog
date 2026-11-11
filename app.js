@@ -2,9 +2,9 @@ require("dotenv").config();
 
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-const cookieParser = require("cookie-parser");
-const connectDB = require("./server/config/db.js");
 
+const connectDB = require("./server/config/db.js");
+const sessionMiddleware = require("./server/sessionMiddleware/session.js");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -16,10 +16,10 @@ app.use(express.static("public"));
 
 app.use(expressLayouts);
 
+app.use(sessionMiddleware);
 app.set("layout", "layouts/main");
 app.set("view engine", "ejs");
 
-app.use(cookieParser());
 // Routes
 app.use("/", require("./server/routes/main.js"));
 app.use("/", require("./server/routes/admin.js"));

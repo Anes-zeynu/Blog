@@ -107,7 +107,7 @@ router.post("/admin/login", async (req, res) => {
     }
 
     const admin = await Admin.findOne({
-      email: email.trim().toLowerCase(),
+      email,
     });
 
     if (!admin) {
@@ -124,7 +124,7 @@ router.post("/admin/login", async (req, res) => {
     const isPasswordValid = await bcryptjs.compare(password, admin.password);
 
     if (!isPasswordValid) {
-      res.status(401).render("admin/login", {
+      return res.status(401).render("admin/login", {
         error: "invalid email or password",
         layout: adminLayout,
         locals: {
@@ -133,6 +133,12 @@ router.post("/admin/login", async (req, res) => {
         },
       });
     }
+
+    req.session.regenerate((err) => {
+      if (err) {
+        res.status(500).send("session creation is failed");
+      }
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).send("failed to logged in");
