@@ -170,13 +170,13 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
       description: "Blog Admin Dashboard",
     };
 
-    res.render("/admin/dashboard", {
+    res.render("admin/dashboard", {
       locals,
       layout: adminLayout,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send("failed for loading a dashboard");
+    return res.status(500).send("failed for loading a dashboard");
   }
 });
 module.exports = router;
