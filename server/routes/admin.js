@@ -172,10 +172,11 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
 
     const data = {
       totalPosts: await Post.countDocuments(),
-      posts: await Post.find().sort({ createdDate: -1 }),
+      posts: await Post.find().sort({ createdDate: -1 }).limit(5),
     };
     res.render("admin/dashboard", {
       locals,
+      data,
       layout: adminLayout,
     });
   } catch (error) {
