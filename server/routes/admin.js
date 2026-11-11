@@ -20,7 +20,7 @@ router.get("/admin/register", async (req, res) => {
 
     res.render("admin/register", {
       locals,
-      adminLayout,
+      layout: adminLayout,
     });
   } catch (error) {
     console.log(error);
@@ -82,7 +82,7 @@ router.get("/admin/login", async (req, res) => {
     };
     res.render("admin/login", {
       locals,
-      adminLayout,
+      layout: adminLayout,
     });
   } catch (error) {
     console.log(error);
