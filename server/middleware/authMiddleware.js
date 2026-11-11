@@ -1,1 +1,9 @@
-const authMiddleware = (req, res, next) => {};
+const authMiddleware = (req, res, next) => {
+  if (!req.session.admin) {
+    return res.redirect("admin/login");
+  }
+
+  next();
+};
+
+module.exports = authMiddleware;
