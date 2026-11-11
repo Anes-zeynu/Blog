@@ -751,3 +751,74 @@ footer {
     padding: 14px;
   }
 }
+
+
+
+
+/* Compact login and registration pages */
+
+.auth-page {
+  min-height: 100vh;
+  padding: 12px;
+}
+
+.auth-container,
+.auth-card {
+  max-width: 400px;
+  padding: 22px 28px;
+  border-radius: 16px;
+}
+
+.auth-header {
+  margin-bottom: 15px;
+}
+
+.auth-header h1,
+.auth-header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.auth-header p {
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+
+.auth-form .form-group {
+  margin-bottom: 8px;
+}
+
+.auth-form label {
+  font-size: 0.88rem;
+  margin-bottom: 3px;
+}
+
+.auth-form input {
+  padding: 9px 12px;
+  margin: 4px 0 9px;
+  font-size: 0.9rem;
+}
+
+.auth-form button,
+.auth-button {
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 0.92rem;
+}
+
+.auth-container p,
+.auth-card p {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 10px;
+  }
+
+  .auth-container,
+  .auth-card {
+    padding: 18px 20px;
+  }
+}
