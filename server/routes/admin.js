@@ -172,16 +172,18 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
 
     const data = {
       totalPosts: await Post.countDocuments(),
-      posts: await Post.find().sort({ createdDate: -1 }).limit(5),
+      posts: await Post.find().sort({ createdAt: -1 }).limit(5),
     };
+
     res.render("admin/dashboard", {
       locals,
       data,
+      admin: req.session.admin,
       layout: adminLayout,
     });
   } catch (error) {
-    console.log(error);
-    return res.status(500).send("failed for loading a dashboard");
+    console.error("Dashboard error:", error);
+    res.status(500).send("Failed to load dashboard");
   }
 });
 module.exports = router;

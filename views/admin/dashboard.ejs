@@ -1,3 +1,268 @@
-<h1><%= locals.title %></h1>
 
-<p><%= locals.description %></p>
+<%
+  const posts = (typeof data !== "undefined" && data.posts)
+    ? data.posts
+    : [];
+
+  const totalPosts = (typeof data !== "undefined" && data.totalPosts !== undefined)
+    ? data.totalPosts
+    : posts.length;
+
+  const adminName = (typeof admin !== "undefined" && admin)
+    ? admin.username
+    : (typeof username !== "undefined" ? username : "Administrator");
+%>
+
+<div class="dashboard-wrapper">
+
+  <!-- SIDEBAR -->
+  <aside class="dashboard-sidebar">
+
+    <div class="sidebar-brand">
+      <div class="sidebar-logo">B</div>
+      <span>Blog Admin</span>
+    </div>
+
+    <div class="sidebar-profile">
+      <div class="profile-avatar">
+        <%= adminName.charAt(0).toUpperCase() %>
+      </div>
+
+      <div>
+        <h4><%= adminName %></h4>
+        <small>Administrator</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <p class="sidebar-label">MENU</p>
+
+      <a href="/admin/dashboard" class="sidebar-link active">
+        <span>▦</span>
+        Dashboard
+      </a>
+
+      <a href="/posts/create" class="sidebar-link">
+        <span>＋</span>
+        Create Post
+      </a>
+
+      <a href="/admin/dashboard" class="sidebar-link">
+        <span>▤</span>
+        All Posts
+      </a>
+
+      <p class="sidebar-label">GENERAL</p>
+
+      <a href="/" class="sidebar-link">
+        <span>⌂</span>
+        View Website
+      </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+      <form action="/admin/logout" method="POST">
+        <button type="submit" class="logout-button">
+          <span>↪</span>
+          Logout
+        </button>
+      </form>
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN DASHBOARD -->
+  <main class="dashboard-main">
+
+    <!-- TOP HEADER -->
+    <header class="dashboard-topbar">
+
+      <div>
+        <h1>Dashboard</h1>
+        <p>Welcome back, <%= adminName %>!</p>
+      </div>
+
+      <a href="/" class="website-button">
+        View Website ↗
+      </a>
+
+    </header>
+
+
+    <!-- OVERVIEW -->
+    <section class="dashboard-overview">
+
+      <div class="overview-heading">
+        <div>
+          <h2>Overview</h2>
+          <p>Here's what's happening with your blog.</p>
+        </div>
+
+        <a href="/posts/create" class="create-post-button">
+          + Create New Post
+        </a>
+      </div>
+
+
+      <!-- STATISTICS -->
+      <div class="dashboard-stats">
+
+        <div class="dashboard-stat-card">
+          <div class="stat-icon purple">▤</div>
+
+          <div>
+            <p>Total Posts</p>
+            <h2><%= totalPosts %></h2>
+          </div>
+        </div>
+
+        <div class="dashboard-stat-card">
+          <div class="stat-icon blue">✎</div>
+
+          <div>
+            <p>Recent Posts</p>
+            <h2><%= posts.length %></h2>
+          </div>
+        </div>
+
+        <div class="dashboard-stat-card">
+          <div class="stat-icon green">✓</div>
+
+          <div>
+            <p>Account Status</p>
+            <h2 class="active-status">Active</h2>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- POSTS SECTION -->
+    <section class="dashboard-posts">
+
+      <div class="posts-heading">
+
+        <div>
+          <h2>Recent Blog Posts</h2>
+          <p>Manage your published articles.</p>
+        </div>
+
+        <!-- SEARCH -->
+        <form action="/admin/dashboard" method="GET" class="dashboard-search">
+          <input
+            type="search"
+            name="search"
+            placeholder="Search posts..."
+            value="<%= typeof search !== 'undefined' ? search : '' %>"
+          >
+
+          <button type="submit">Search</button>
+        </form>
+
+      </div>
+
+
+      <!-- POSTS TABLE -->
+      <div class="dashboard-table-container">
+
+        <table class="dashboard-table">
+
+          <thead>
+            <tr>
+              <th>Post Title</th>
+              <th>Created Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <% if (posts.length > 0) { %>
+
+              <% posts.forEach(post => { %>
+
+                <tr>
+
+                  <td>
+                    <div class="post-title-cell">
+                      <strong><%= post.title %></strong>
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="post-date">
+                      <%= post.createdAt
+                        ? new Date(post.createdAt).toLocaleDateString()
+                        : "N/A" %>
+                    </span>
+                  </td>
+
+                  <td>
+                    <div class="post-actions">
+
+                      <a
+                        href="/posts/edit/<%= post._id %>"
+                        class="action-edit"
+                      >
+                        Edit
+                      </a>
+
+                      <form
+                        action="/posts/delete/<%= post._id %>"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this post?')"
+                      >
+                        <button type="submit" class="action-delete">
+                          Delete
+                        </button>
+                      </form>
+
+                    </div>
+                  </td>
+
+                </tr>
+
+              <% }) %>
+
+            <% } else { %>
+
+              <tr>
+                <td colspan="3" class="empty-posts">
+                  <div class="empty-icon">▤</div>
+                  <h3>No Posts Found</h3>
+                  <p>You haven't created any blog posts yet.</p>
+
+                  <a href="/posts/create" class="create-post-button">
+                    Create Your First Post
+                  </a>
+                </td>
+              </tr>
+
+            <% } %>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <div class="posts-footer">
+        Showing <%= posts.length %> recent posts
+      </div>
+
+    </section>
+
+
+    <!-- DASHBOARD FOOTER -->
+    <footer class="dashboard-footer">
+      <p>Blog Administration Panel &copy; <%= new Date().getFullYear() %></p>
+    </footer>
+
+  </main>
+
+</div>
