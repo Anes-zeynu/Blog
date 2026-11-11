@@ -174,6 +174,9 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
       locals,
       layout: adminLayout,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("failed for loading a dashboard");
+  }
 });
 module.exports = router;
