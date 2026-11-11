@@ -158,4 +158,22 @@ router.post("/admin/login", async (req, res) => {
     return res.status(500).send("failed to logged in");
   }
 });
+
+/**
+ * Admin Dashboard
+ */
+
+router.get("/dashboard", authMiddleware, async (req, res) => {
+  try {
+    const locals = {
+      title: "Admin Dashboard",
+      description: "Blog Admin Dashboard",
+    };
+
+    res.render("/admin/dashboard", {
+      locals,
+      layout: adminLayout,
+    });
+  } catch (error) {}
+});
 module.exports = router;
