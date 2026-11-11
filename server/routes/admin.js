@@ -172,6 +172,7 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
 
     const data = {
       totalPosts: await Post.countDocuments(),
+      posts: await Post.find().sort({ createdDate: -1 }),
     };
     res.render("admin/dashboard", {
       locals,
