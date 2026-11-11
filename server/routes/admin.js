@@ -5,6 +5,7 @@ const Post = require("../model/post");
 
 const bcryptjs = require("bcryptjs");
 const adminLayout = "../views/layouts/admin";
+const authMiddleware = require("../middleware/authMiddleware");
 
 /**
  * Get
