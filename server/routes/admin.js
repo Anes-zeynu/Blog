@@ -57,6 +57,8 @@ router.post("/admin/register", async (req, res) => {
       email,
       password: hashedPassword,
     });
+
+    res.redirect("/admin/login");
   } catch (error) {
     if (error.code === 11000) {
       return res.status(400).send("Email already existed");
@@ -136,7 +138,7 @@ router.post("/admin/login", async (req, res) => {
 
     req.session.regenerate((err) => {
       if (err) {
-        res.status(500).send("session creation is failed");
+        return res.status(500).send("session creation is failed");
       }
 
       req.session.admin = {
@@ -146,11 +148,10 @@ router.post("/admin/login", async (req, res) => {
 
       req.session.save((err) => {
         if (err) {
-          res.status(500).send("failed to save the session");
+          return res.status(500).send("failed to save the session");
         }
+        res.redirect("/dashboard");
       });
-
-      res.redirect("/dashboard");
     });
   } catch (error) {
     console.log(error);
