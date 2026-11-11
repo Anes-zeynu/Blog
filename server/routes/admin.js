@@ -138,6 +138,19 @@ router.post("/admin/login", async (req, res) => {
       if (err) {
         res.status(500).send("session creation is failed");
       }
+
+      req.session.admin = {
+        id: admin._id.toString(),
+        username: admin.username,
+      };
+
+      req.session.save((err) => {
+        if (err) {
+          res.status(500).send("failed to save the session");
+        }
+      });
+
+      res.redirect("/dashboard");
     });
   } catch (error) {
     console.log(error);
