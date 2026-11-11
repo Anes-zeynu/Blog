@@ -163,7 +163,7 @@ router.post("/admin/login", async (req, res) => {
  * Admin Dashboard
  */
 
-router.get("/dashboard", authMiddleware, async (req, res) => {
+router.get("/dashboard", async (req, res) => {
   try {
     const locals = {
       title: "Admin Dashboard",
