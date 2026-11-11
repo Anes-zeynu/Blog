@@ -4,7 +4,7 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 
 const connectDB = require("./server/config/db.js");
-const sessionMiddleware = require("./server/sessionMiddleware/session.js");
+const sessionMiddleware = require("./server/middleware/session.js");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
