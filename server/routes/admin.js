@@ -170,6 +170,9 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
       description: "Blog Admin Dashboard",
     };
 
+    const data = {
+      totalPosts: await Post.countDocuments(),
+    };
     res.render("admin/dashboard", {
       locals,
       layout: adminLayout,
