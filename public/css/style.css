@@ -1,332 +1,753 @@
-:root{
-  --black : #1c1c1c;
-  --gray:#7E7E7E;
-  --gray-light:#E7E7E7;
-  --red:b30000;
-  --font-size-base:1rem;
-  --border-radius: 10px;
+
+/* ==========================================
+   1. ROOT VARIABLES
+========================================== */
+
+:root {
+  --black: #f8fafc;
+  --gray: #94a3b8;
+  --gray-light: #334155;
+  --red: #ef4444;
+
+  --bg: #080d1b;
+  --card: rgba(20, 32, 55, 0.85);
+
+  --primary: #6366f1;
+  --secondary: #8b5cf6;
+
+  --border: rgba(148, 163, 184, 0.17);
+  --border-radius: 14px;
+  --shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
 }
 
-body{
-  color: var(--black);
-  font-size: var(--font-size-base);
-  background-color: #FAF5EE;
+/* ==========================================
+   2. RESET AND GLOBAL STYLES
+========================================== */
+
+* {
   margin: 0;
-}
-
-
-a{color: var(--black);}
-h1{font-size: 50px;}
-h2{font-size: 35px;}
-h3{font-size: 30px;}
-
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-select,
-textarea{
-  font-size: var(--font-size-base);
-  display: block;
+  padding: 0;
   box-sizing: border-box;
-  width: 100%;
-  padding: 0.7rem 0.75rem;
-  margin-bottom: 10px;
 }
 
-.btn{
-  background-color: var(--black);
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  margin: 4px;
-  cursor: pointer;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--black);
+
+  background:
+    radial-gradient(circle at 10% 0%, #172554 0, transparent 35%),
+    radial-gradient(circle at 90% 90%, #312e81 0, transparent 30%),
+    var(--bg);
+
+  overflow-x: hidden;
+}
+
+a {
+  color: #a5b4fc;
   text-decoration: none;
+  transition: 0.3s ease;
 }
 
--btn-delete{
-  padding: 10px 16px;
-  background-color: var(--red);
+a:hover {
+  color: #c4b5fd;
 }
 
-img{
-  width: 100%;
-  height: auto;
-  margin-left: 10px;
-}
-
-/* layout */
-
-.container{
-  max-width: 982px;
-  margin: 0 auto;
-  padding: 0 10px;
-
-}
-
-.main{
-  padding: 20px 0;
-}
-
-/*hero section*/
-
-.hero-image{
-  max-height: 530px;
-  filter: drop-shadow(0px 44px 34px var(--black));
-  overflow: hidden;
-  border-radius: var(--border-radius);
-}
-
-/*main header */
-
-.header{
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  padding-top: 10px;
-  grid-template-areas: 
-  "logo button"
-  "menu menu"
-  ;
-}
-
-@media only screen and (min-width:768px){
-  .header{
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: "logo menu button";
-  }
-}
-
-.header-logo{
-  grid-area: logo;
-  font-weight: 800;
-  font-size: 30px;
-  text-decoration: none;
-}
-
-.header-logo:hover{
-  text-decoration: underline;
-}
-
-.header-nav{
-  display: flex;
-  justify-content: center;
-  grid-area: menu;
-}
-
-.header-button{
-  display: flex;
-  justify-content: end;
-  grid-area: button;
-}
-
-.header-button button{
-  display: flex;
-  gap:4px;
-  align-items: center;
-  border-radius: var(--border-radius);
-  border: 2px solid transparent;
-  padding: 10px;
-  background: none;
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  color: black;
-  cursor: pointer;
-}
- 
-.header-button button:hover{
-  border: 2px solid transparent;
-}
-
-.header-nav ul{
+ul {
   list-style: none;
-  font-size: var(--font-size-base);
-  font-weight: 700;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ==========================================
+   3. MAIN CONTAINER
+========================================== */
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.main {
+  min-height: 65vh;
+  padding: 30px 0;
+}
+
+/* ==========================================
+   4. HEADER
+========================================== */
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+
+  padding: 20px 25px;
+  margin: 25px 0;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(15px);
+}
+
+.header-logo {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.header-nav ul li a {
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.header-nav ul li a:hover {
+  color: #a5b4fc;
+}
+
+.header-button {
+  display: flex;
+  align-items: center;
+}
+
+.searchBtn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 10px 17px;
+
+  background: rgba(99, 102, 241, 0.15);
+  color: #c7d2fe;
+
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 10px;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.searchBtn:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.search-svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* ==========================================
+   5. SEARCH BAR
+========================================== */
+
+.search-bar {
+  display: none;
+  width: 100%;
+  padding: 25px 0;
+
+  background: rgba(20, 32, 55, 0.96);
+  border-bottom: 1px solid var(--border);
+}
+
+.search-bar.active {
+  display: block;
+}
+
+.search-form {
   display: flex;
   gap: 10px;
 }
 
-.header-nav ul li a{
-  padding: 10px;
-  text-decoration: none;
-}
-
-.header-nav ul li a:hover{
-  text-decoration: underline;
-}
-
-.header-nav ul li a.active{
-  color: var(--gray);
-}
-
-/*author Home page*/
-
-.author{
-  text-align: center;
-  padding: 10px 0;
-
-}
-
-.author_headindg{
-  margin-bottom: 10px;
-  margin-top: 5px;
-}
-
-.author-body{
-  font-size: 39px;
-  margin: 5px 0 40px 0;
-}
-
-.articles{
-  margin-top: 4rem;
-}
-.article_heading{
-  margin-top: 8px;
-}
-
-.article-ul{
-  list-style: none;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-}
-
-.article-list-days{
-  display: inline-block;
-  font-size: var(--font-size-base);
-  color: var(--gray);
-  width: 268px;
-}
-
-.article-ul li a{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 18px 0;
-  text-decoration: none;
-}
-
-@media only screen and (min-width:768px){
-  .article-ul li a{
-    flex-direction: row;
-    align-items: center;
-  }
-  .article-list-days{
-    text-align: right;
-  }
-}
-
-.article-ul li{
-  font-size: 24px;
-  cursor: pointer;
-  transition: filter 0.1s;
-}
-
-.article-ul li a:hover{
-  color: var(--gray);
-  transition: 0.4s;
-}
-.pagination{
-  display: inline-block;
-  color: var(--gray);
-  margin: 40px;
-  text-decoration: none;
-  font-size: 1.3rem;
-}
-
-.pagination:hover{
-  color: var(--black);
-}
-
-/*footer*/
-.footer{
-  margin: 4rem;
-  text-align: center;
-}
-
-/* Search bar*/
-
-.search-bar{
-  background-color: var(--black);
-  left: 0;
-  right: 0;
-  padding: 4px 0;
-  position: absolute;
-  visibility: hidden;
-  transform: translateY(-100px);
-}
-
-
-/* Search bar */
-
-.search-bar {
-  background-color: var(--black);
-  left: 0;
-  right: 0;
-  top: 0;
-  padding: 20px 0;
-  position: absolute;
-  z-index: 1000;
-
-  visibility: hidden;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease, visibility 0.3s ease;
-}
-
-.search-bar.open {
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.search-bar input {
-  margin: 0;
-  padding: 12px;
+.search-form input {
   width: 100%;
+  padding: 14px 18px;
+
+  background: #0f172a;
+  color: white;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+}
+
+.search-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.search-form input::placeholder {
+  color: #64748b;
 }
 
 #searchClose {
-  right: 0;
-  top: 0;
-  color: var(--gray-light);
-  position: absolute;
-  padding: 15px;
+  display: inline-block;
+  margin-top: 12px;
+  color: #a5b4fc;
   cursor: pointer;
+  font-size: 0.9rem;
 }
 
-/*admin dashboard*/
-
-.admin-title{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+#searchClose:hover {
+  color: white;
 }
 
-.admin-posts{
-  padding: 0;
+/* ==========================================
+   6. AUTHOR SECTION
+========================================== */
+
+.author {
+  padding: 35px;
+  margin: 30px 0;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(15px);
+}
+
+.author h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+
+  background: linear-gradient(135deg, #a5b4fc, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.author-body {
+  color: #cbd5e1;
+  font-size: 1.1rem;
   margin: 0;
 }
 
-.admin-posts-controls form{
-  display: inline-block;
+/* ==========================================
+   7. HERO IMAGE
+========================================== */
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+
+  margin: 25px 0 40px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  box-shadow: var(--shadow);
 }
 
-.admin-posts-controls .btn{
-  background-color: var(--black);
-  color: var(--gray-light);
-  display: inline-block;
-  padding: 4px 8px ;
-  line-height: 2;
-  text-decoration: none;
-  border: 0;
-  font-size: 0.8px;
+/* ==========================================
+   8. ARTICLES SECTION
+========================================== */
+
+.articles {
+  margin: 35px 0;
 }
 
-.admin-posts li{
+.article_heading {
+  font-size: 1.9rem;
+  font-weight: 750;
+  margin-bottom: 22px;
+  color: #f8fafc;
+}
+
+/* Your EJS creates a separate article-ul
+   for each post, so style each list as a card. */
+
+.article-ul {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.article-ul li {
+  padding: 20px 22px;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+  transition: 0.3s ease;
+}
+
+.article-ul li:hover {
+  transform: translateY(-3px);
+  background: rgba(35, 49, 78, 0.95);
+  border-color: rgba(129, 140, 248, 0.4);
+}
+
+.article-ul li a {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
+  align-items: center;
+  gap: 15px;
+
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.article-ul li a:hover {
+  color: #a5b4fc;
+}
+
+.article-list-days {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   9. PAGINATION
+========================================== */
+
+.pagination {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 25px;
+  padding: 12px 22px;
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+
+  border-radius: 10px;
+  font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+.pagination:hover {
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+/* ==========================================
+   10. GENERAL BUTTONS
+========================================== */
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  padding: 11px 22px;
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+}
+
+/* ==========================================
+   11. FORMS AND INPUTS
+========================================== */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 13px 15px;
+  margin: 8px 0 18px;
+
+  background: rgba(15, 23, 42, 0.85);
+  color: #f8fafc;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+
+  transition: 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #64748b;
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  color: #cbd5e1;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* ==========================================
+   12. ADMIN DASHBOARD
+========================================== */
+
+.admin-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  padding: 25px;
+  margin-bottom: 25px;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.admin-posts {
+  padding: 25px;
+  margin: 20px 0;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.admin-posts-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+/* ==========================================
+   13. ARTICLE CONTENT
+========================================== */
+
+.article {
+  padding: 30px;
+  margin: 25px 0;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  box-shadow: var(--shadow);
+}
+
+.article img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  margin: 20px 0;
+}
+
+.article p {
+  color: #cbd5e1;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+/* ==========================================
+   14. TABLES
+========================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  color: #cbd5e1;
+}
+
+th {
+  background: rgba(99, 102, 241, 0.15);
+  color: white;
+}
+
+/* ==========================================
+   15. FOOTER
+========================================== */
+
+footer {
+  margin: 50px 0 20px;
+  padding: 25px;
+
+  text-align: center;
+  color: #94a3b8;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+/* ==========================================
+   16. LOGIN AND REGISTER SUPPORT
+========================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.auth-container,
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+
+  background: rgba(20, 32, 55, 0.9);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-form {
+  width: 100%;
+}
+
+.auth-form button,
+.auth-button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+}
+
+/* ==========================================
+   17. TABLET RESPONSIVENESS
+========================================== */
+
+@media (max-width: 768px) {
+  .container {
+    width: 94%;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 18px;
+  }
+
+  .header-nav ul {
+    gap: 18px;
+  }
+
+  .author {
+    padding: 25px;
+  }
+
+  .hero-image {
+    max-height: 350px;
+  }
+
+  .article-ul li {
+    padding: 17px;
+  }
+}
+
+/* ==========================================
+   18. MOBILE RESPONSIVENESS
+========================================== */
+
+@media (max-width: 550px) {
+  body {
+    font-size: 15px;
+  }
+
+  .container {
+    width: 94%;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .header-logo {
+    font-size: 1.5rem;
+  }
+
+  .header-nav {
+    width: 100%;
+  }
+
+  .header-nav ul {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .header-button {
+    width: 100%;
+  }
+
+  .searchBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .author {
+    padding: 22px;
+  }
+
+  .author h1 {
+    font-size: 2rem;
+  }
+
+  .author-body {
+    font-size: 1rem;
+  }
+
+  .hero-image {
+    max-height: 250px;
+    margin: 20px 0 30px;
+  }
+
+  .article_heading {
+    font-size: 1.5rem;
+  }
+
+  .article-ul li a {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .article-list-days {
+    white-space: normal;
+  }
+
+  .article {
+    padding: 20px;
+  }
+
+  .admin-title,
+  .admin-posts {
+    padding: 18px;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+
+  .auth-container,
+  .auth-card {
+    padding: 25px 20px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* ==========================================
+   19. VERY SMALL PHONES
+========================================== */
+
+@media (max-width: 360px) {
+  .header-nav ul {
+    gap: 8px;
+  }
+
+  .header-nav ul li a {
+    font-size: 0.85rem;
+  }
+
+  .author h1 {
+    font-size: 1.7rem;
+  }
+
+  .author {
+    padding: 18px;
+  }
+
+  .article-ul li {
+    padding: 14px;
+  }
 }

@@ -1,13 +1,14 @@
 const session = require("express-session");
-const mongoStore = require("connect-mongo");
-const { collection } = require("../model/Admin");
+const { MongoStore } = require("connect-mongo");
 
 const sessionMiddleware = session({
-  scecret: process.env.SECRET_KEY,
+  secret: process.env.SECRET_KEY,
+
   resave: false,
   saveUninitialized: false,
-  store: mongoStore.create({
-    mongoURL: process.env.MyBlogURL,
+
+  store: MongoStore.create({
+    mongoUrl: process.env.MyBlogURL,
     collectionName: "sessions",
   }),
 

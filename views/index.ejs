@@ -1,35 +1,22 @@
-<div class="author">
-  <h1 author_headindg>
-    Hi , I am Anes 
-  </h1>
-  <p class="author-body">
-    Web developer and software engineering student
-  </p>
-  </div>
-  <img src="/img/twilight_lake_social_1200x630.png" alt="" class="hero-image" width="981" height="530">
+<section class="articles">
+  <h2 class="article_heading">Latest Posts</h2>
 
-  <section class="articles">
-    <h2 class="article_heading">Latest Posts</h2>
-
+  <ul class="article-ul">
     <% data.forEach(element => { %>
-    <ul class="article-ul">
       <li>
         <a href="/post/<%= element._id %>">
           <span><%= element.title %></span>
-          <span class="article-list-days"><%= element.createdDate.toDateString() %></span>
+          <span class="article-list-days">
+            <%= element.createdDate.toDateString() %>
+          </span>
         </a>
       </li>
-      <% }) %>
-    </ul>
+    <% }) %>
+  </ul>
 
-
-
-<% if (nextPage !== null) { %>
-
+  <% if (nextPage !== null) { %>
     <a href="/?page=<%= nextPage %>" class="pagination">
-        &lt; View Older Posts
+      &lt; View Older Posts
     </a>
-
-<% } %>
-    
-  </section>
+  <% } %>
+</section>

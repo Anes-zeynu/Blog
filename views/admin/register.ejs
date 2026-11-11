@@ -1,35 +1,74 @@
-<h1>Admin Registration</h1>
 
-<form action="/admin/register" method="POST">
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
 
-  <input
-    type="text"
-    name="username"
-    placeholder="Username"
-    required
-  >
+      <div class="auth-header">
+        <div class="auth-logo">B</div>
+        <h1>Create Admin Account</h1>
+        <p>Set up your administrator account.</p>
+      </div>
 
-  <input
-    type="email"
-    name="email"
-    placeholder="Email"
-    required
-  >
+      <% if (typeof error !== "undefined" && error) { %>
+        <div class="auth-error"><%= error %></div>
+      <% } %>
 
-  <input
-    type="password"
-    name="password"
-    placeholder="Password"
-    required
-  >
+      <form action="/admin/register" method="POST" class="auth-form">
 
-  <input
-    type="password"
-    name="setupKey"
-    placeholder="Setup Key"
-    required
-  >
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter username"
+            required
+          >
+        </div>
 
-  <button type="submit">Register Admin</button>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter email address"
+            required
+          >
+        </div>
 
-</form>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create a strong password"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="setupKey">Admin Setup Key</label>
+          <input
+            type="password"
+            id="setupKey"
+            name="setupKey"
+            placeholder="Enter your setup key"
+            required
+          >
+        </div>
+
+        <button type="submit" class="auth-button">
+          Create Account
+        </button>
+
+      </form>
+
+      <div class="auth-footer">
+        Secure Blog Administration
+      </div>
+
+    </div>
+  </div>
+</div>
