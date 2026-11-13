@@ -191,11 +191,16 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
  * GET Posts
  */
 
-router.get("/admin/post", authMiddleware, async (req, res) => {
+/**
+ * GET
+ * All Posts Page
+ */
+
+router.get("/admin/posts", authMiddleware, async (req, res) => {
   try {
     const locals = {
-      title: "Manage Posts",
-      description: "Manage all blog posts",
+      title: "All Blog Posts",
+      description: "Manage all your blog posts",
     };
 
     const posts = await Post.find().sort({ createdDate: -1 });
@@ -206,8 +211,8 @@ router.get("/admin/post", authMiddleware, async (req, res) => {
       layout: adminLayout,
     });
   } catch (error) {
-    console.log("Manage posts error", error);
-    res.status(500).send("failed to posts");
+    console.error("All Posts Error:", error);
+    res.status(500).send("Failed to load posts");
   }
 });
 module.exports = router;

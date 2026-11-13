@@ -156,6 +156,6 @@ function insertPostData() {
   ]);
 }
 
-insertPostData();
+// insertPostData();
 
 module.exports = router;
