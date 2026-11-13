@@ -186,4 +186,28 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
     res.status(500).send("Failed to load dashboard");
   }
 });
+
+/**
+ * GET Posts
+ */
+
+router.get("/admin/post", authMiddleware, async (req, res) => {
+  try {
+    const locals = {
+      title: "Manage Posts",
+      description: "Manage all blog posts",
+    };
+
+    const posts = await Post.find().sort({ createdDate: -1 });
+    res.render("admin/posts", {
+      locals,
+      posts,
+      admin: req.session.admin,
+      layout: adminLayout,
+    });
+  } catch (error) {
+    console.log("Manage posts error", error);
+    res.status(500).send("failed to posts");
+  }
+});
 module.exports = router;
