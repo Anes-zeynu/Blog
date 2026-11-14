@@ -271,7 +271,18 @@ router.delete("/admin/posts/:id", authMiddleware, async (req, res) => {
 router.put("/admin/posts/:id", authMiddleware, async (req, res) => {
   try {
     const postId = req.params.id;
-    await Post.findByIdAndUpdate(postId);
+    const { title, body } = req.body;
+    await Post.findByIdAndUpdate(
+      postId,
+      {
+        title,
+        body,
+        updatedDate: Date.now(),
+      },
+      {
+        runValidators: true,
+      },
+    );
     res.redirect("/admin/posts");
   } catch (error) {
     console.log("error in updating posts", error);
