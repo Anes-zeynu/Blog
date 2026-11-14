@@ -405,9 +405,53 @@ button {
   box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
 }
 
+
 .btn-delete {
-  background: linear-gradient(135deg, #dc2626, #991b1b);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-left: 10px;
+  padding: 9px 17px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+
+  background: rgb(30 ,49, 70);
+  color: #dc2626;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(220, 38, 38, 0.06);
 }
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: #ffffff;
+  border-color: #dc2626;
+
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(220, 38, 38, 0.2);
+}
+
+.btn-delete:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn-delete:focus-visible {
+  outline: 3px solid rgba(220, 38, 38, 0.25);
+  outline-offset: 3px;
+}
+
+.action-buttons form {
+  display: inline-flex;
+  margin: 0;
+}
+
 
 /* ==========================================
    11. GENERAL FORMS AND INPUTS
