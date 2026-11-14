@@ -1172,7 +1172,7 @@ select:focus-visible {
 }
 
 .logout-button:hover {
-  background: var(--red);
+  background: rgb(19, 31, 72);
   color: white;
 }
 
