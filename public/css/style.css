@@ -1571,3 +1571,67 @@ select:focus-visible {
     padding: 8px 10px;
   }
 }
+
+
+.create-post-page {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 25px;
+}
+
+.create-post-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 250px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.publish-btn,
+.create-post-btn {
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 7px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  padding: 12px 20px;
+  background: #eee;
+  color: #333;
+  border-radius: 7px;
+  text-decoration: none;
+}
