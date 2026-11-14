@@ -219,6 +219,9 @@ router.get("/admin/posts", authMiddleware, async (req, res) => {
 router.post("/admin/posts/create", authMiddleware, async (req, res) => {
   try {
     const { title, body } = req.body;
+    if (!title || !body || !title.trim() || !body.trim()) {
+      res.status(400).send("title and body are required");
+    }
   } catch (error) {
     console.log("error in creating a new post", error);
     res.status(500).send("Error in creating a new post ", message);
