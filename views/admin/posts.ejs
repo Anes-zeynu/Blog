@@ -62,9 +62,15 @@
                     Edit
                   </a>
 
-                  <button class="btn-delete">
-                    Delete
-                  </button>
+                 <form
+                    action="/admin/posts/<%= post._id %>?_method=DELETE"
+                    method="POST"
+                    onsubmit="return confirm('Are you sure you want to delete this post?');"
+                  >
+                    <button type="submit" class="btn-delete">
+                      Delete
+                    </button>
+                  </form>
 
                 </td>
 
