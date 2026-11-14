@@ -221,16 +221,14 @@ router.get("/admin/posts", authMiddleware, async (req, res) => {
  * create a new post page
  */
 
-router.get("/admin/posts/new", authMiddleware, async (req, res) => {
-  const locals = {
-    title: "Create New Post",
-    description: "Write a new blog post",
-  };
-
-  res.render("admin/create_posts", {
-    locals,
+router.get("/admin/posts/new", authMiddleware, (req, res) => {
+  res.render("admin/create-post", {
+    locals: {
+      title: "Create New Post",
+      description: "Create a new blog post",
+    },
     admin: req.session.admin,
-    adminLayout,
+    layout: adminLayout,
   });
 });
 /**
