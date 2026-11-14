@@ -215,4 +215,13 @@ router.get("/admin/posts", authMiddleware, async (req, res) => {
     res.status(500).send("Failed to load posts");
   }
 });
+
+router.post("/admin/posts/create", authMiddleware, async (req, res) => {
+  try {
+    const { title, body } = req.body;
+  } catch (error) {
+    console.log("error in creating a new post", error);
+    res.status(500).send("Error in creating a new post ", message);
+  }
+});
 module.exports = router;
