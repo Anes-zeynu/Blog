@@ -1673,9 +1673,43 @@ select:focus-visible {
 }
 
 .cancel-btn {
+  background: linear-gradient(135deg, #304b83, #4266a8);
+  color: #ffffff;
   padding: 12px 20px;
-  background: #eee;
-  color: #333;
   border-radius: 7px;
   text-decoration: none;
 }
+
+
+
+.btn-primary , .btn-secondary{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #304b83, #4266a8);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  padding: 13px 25px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #4266a8, #527bc0);
+  transform: translateY(-3px);
+  box-shadow: 0 9px 22px rgba(66, 102, 168, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+}
+
+
