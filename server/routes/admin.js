@@ -6,6 +6,7 @@ const Post = require("../model/post");
 const bcryptjs = require("bcryptjs");
 const adminLayout = "../views/layouts/admin";
 const authMiddleware = require("../middleware/authMiddleware");
+const cookie = require("express-session/session/cookie");
 
 /**
  * Get
@@ -183,7 +184,7 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
     });
   } catch (error) {
     console.error("Dashboard error:", error);
-    res.status(500).send("Failed to load dashboard");
+    return res.status(500).send("Failed to load dashboard");
   }
 });
 
@@ -212,7 +213,7 @@ router.get("/admin/posts", authMiddleware, async (req, res) => {
     });
   } catch (error) {
     console.error("All Posts Error:", error);
-    res.status(500).send("Failed to load posts");
+    return res.status(500).send("Failed to load posts");
   }
 });
 
@@ -238,7 +239,7 @@ router.post("/admin/posts/create", authMiddleware, async (req, res) => {
   try {
     const { title, body } = req.body;
     if (!title || !body || !title.trim() || !body.trim()) {
-      res.status(400).send("title and body are required");
+      return res.status(400).send("title and body are required");
     }
 
     await Post.create({
@@ -249,7 +250,7 @@ router.post("/admin/posts/create", authMiddleware, async (req, res) => {
     res.redirect("/admin/posts");
   } catch (error) {
     console.log("error in creating a new post", error);
-    res.status(500).send("Error in creating a new post ", message);
+    return res.status(500).send("Error in creating a new post ", message);
   }
 });
 
@@ -264,7 +265,7 @@ router.delete("/admin/posts/:id", authMiddleware, async (req, res) => {
     res.redirect("/admin/posts");
   } catch (error) {
     console.log("errot in deleting", error);
-    res.status(500).send("failed to  deleting posts");
+    return res.status(500).send("failed to  deleting posts");
   }
 });
 
@@ -283,7 +284,7 @@ router.get("/admin/posts/edit/:id", authMiddleware, async (req, res) => {
     res.render("admin/edit", { post });
   } catch (error) {
     console.log("Error finding post:", error);
-    res.status(500).send("Failed to load edit page");
+    return res.status(500).send("Failed to load edit page");
   }
 });
 
@@ -305,7 +306,22 @@ router.put("/admin/posts/:id", authMiddleware, async (req, res) => {
     res.redirect("/admin/posts");
   } catch (error) {
     console.log("error in updating posts", error);
-    res.status(500).send("failed to update a post");
+    return res.status(500).send("failed to update a post");
   }
+});
+
+/**
+ * post
+ * Admin logout
+ */
+router.post("/admin/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("logout error", err);
+      return res.status(500).send("failed to logout");
+    }
+
+    res.clearCookie;
+  });
 });
 module.exports = router;
