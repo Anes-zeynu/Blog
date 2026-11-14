@@ -1,6 +1,9 @@
 const authMiddleware = (req, res, next) => {
-  if (!req.session.admin) {
-    return res.redirect("admin/login");
+  console.log("Session ID:", req.sessionID);
+  console.log("Admin:", req.session?.admin);
+
+  if (!req.session || !req.session.admin) {
+    return res.redirect("/admin/login");
   }
 
   next();
