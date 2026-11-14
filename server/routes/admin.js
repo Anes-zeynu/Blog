@@ -268,6 +268,25 @@ router.delete("/admin/posts/:id", authMiddleware, async (req, res) => {
   }
 });
 
+/**
+ * Edit the posts
+ */
+
+router.get("/admin/posts/edit/:id", authMiddleware, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).send("Post not found");
+    }
+
+    res.render("admin/edit", { post });
+  } catch (error) {
+    console.log("Error finding post:", error);
+    res.status(500).send("Failed to load edit page");
+  }
+});
+
 router.put("/admin/posts/:id", authMiddleware, async (req, res) => {
   try {
     const postId = req.params.id;
