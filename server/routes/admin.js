@@ -222,6 +222,12 @@ router.post("/admin/posts/create", authMiddleware, async (req, res) => {
     if (!title || !body || !title.trim() || !body.trim()) {
       res.status(400).send("title and body are required");
     }
+
+    await Post.create({
+      title: title.trim(),
+      body: body.trim(),
+      createdDate: new Date(),
+    });
   } catch (error) {
     console.log("error in creating a new post", error);
     res.status(500).send("Error in creating a new post ", message);
