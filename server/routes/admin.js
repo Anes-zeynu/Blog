@@ -216,6 +216,26 @@ router.get("/admin/posts", authMiddleware, async (req, res) => {
   }
 });
 
+/**
+ * GET
+ * create a new post page
+ */
+
+router.get("/admin/posts/new", authMiddleware, async (req, res) => {
+  const locals = {
+    title: "Create New Post",
+    description: "Write a new blog post",
+  };
+
+  res.render("admin/create_posts", {
+    locals,
+    admin: req.session.admin,
+    adminLayout,
+  });
+});
+/**
+ * create a new post
+ */
 router.post("/admin/posts/create", authMiddleware, async (req, res) => {
   try {
     const { title, body } = req.body;
