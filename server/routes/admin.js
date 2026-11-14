@@ -267,4 +267,15 @@ router.delete("/admin/posts/:id", authMiddleware, async (req, res) => {
     res.status(500).send("failed to  deleting posts");
   }
 });
+
+router.put("/admin/posts/:id", authMiddleware, async (req, res) => {
+  try {
+    const postId = req.params.id;
+    await Post.findByIdAndUpdate(postId);
+    res.redirect("/admin/posts");
+  } catch (error) {
+    console.log("error in updating posts", error);
+    res.status(500).send("failed to update a post");
+  }
+});
 module.exports = router;
