@@ -252,4 +252,19 @@ router.post("/admin/posts/create", authMiddleware, async (req, res) => {
     res.status(500).send("Error in creating a new post ", message);
   }
 });
+
+/**
+ * Delete the published posts
+ */
+router.delete("/admin/posts/:id", authMiddleware, async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    await Post.findByIdAndDelete(postId);
+    res.redirect("/admin/posts");
+  } catch (error) {
+    console.log("errot in deleting", error);
+    res.status(500).send("failed to  deleting posts");
+  }
+});
 module.exports = router;

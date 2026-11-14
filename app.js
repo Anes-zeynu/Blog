@@ -5,6 +5,7 @@ const expressLayouts = require("express-ejs-layouts");
 
 const connectDB = require("./server/config/db.js");
 const sessionMiddleware = require("./server/middleware/session.js");
+const methodOverride = require("method-override");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(methodOverride);
 app.use(express.static("public"));
 
 app.use(expressLayouts);
