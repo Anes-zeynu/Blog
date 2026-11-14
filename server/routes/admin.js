@@ -228,6 +228,7 @@ router.post("/admin/posts/create", authMiddleware, async (req, res) => {
       body: body.trim(),
       createdDate: new Date(),
     });
+    res.redirect("/admin/posts");
   } catch (error) {
     console.log("error in creating a new post", error);
     res.status(500).send("Error in creating a new post ", message);
