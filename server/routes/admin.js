@@ -321,7 +321,11 @@ router.post("/admin/logout", (req, res) => {
       return res.status(500).send("failed to logout");
     }
 
-    res.clearCookie;
+    res.clearCookie("connect.sid", {
+      path: "/",
+    });
+
+    res.redirect("/admin/login");
   });
 });
 module.exports = router;
